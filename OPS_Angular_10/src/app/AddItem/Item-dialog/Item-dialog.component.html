@@ -1,0 +1,139 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+                        <h4 class="card-title">{{this.isEditMode ? 'Edit Item' : 'Add Item'}}</h4>
+                        <p class="card-category"> {{this.isEditMode ? 'Here You Can Edit the Item' : 'Here You Can
+                            Define New Item'}}</p>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]='form1' novalidate>
+                            <mat-card fxLayout="row" style='margin-top:10px;'>
+
+                                <div fxLayout="column" fxFlex="60">
+                                    <div fxLayout="row">
+                                        <div fxFlex="70">
+                                            <mat-form-field class="example-full-width">
+                                                <mat-label>Item Name</mat-label>
+                                                <input formControlName='itemtitle' matInput>
+                                                <mat-error *ngFor="let validation of validation_messages.title">
+                                                    <mat-error class="error-message"
+                                                        *ngIf="form1.get('itemtitle').hasError(validation.type)
+                                                                                               && (form1.get('itemtitle').dirty || form1.get('itemtitle').touched)">
+                                                        {{validation.message}}</mat-error>
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div fxFlex="30">
+                                            <mat-checkbox class="example-margin" formControlName="isActive" color="primary"
+                                                          ng-checked="isActive">Active</mat-checkbox>
+
+
+                                        </div>
+                                    </div>
+                                    <div fxLayout="row">
+                                        <div fxFlex>
+                                            <mat-form-field class="example-full-width">
+                                                <mat-label>Description</mat-label>
+                                                <textarea matInput formControlName="description"></textarea>
+                                            </mat-form-field>
+                                        </div>
+
+                                    </div>
+                                    <div fxLayout="row" fxLayoutGap="20px">
+                                        <div fxFlex="50">
+                                            <mat-form-field class="example-full-width">
+                                                <mat-label>Sale Price</mat-label>
+                                                <input formControlName='salePrice' matInput type="number">
+                                                <mat-error *ngFor="let validation of validation_messages.salePrice">
+                                                    <mat-error class="error-message"
+                                                        *ngIf="form1.get('salePrice').hasError(validation.type)
+                                                                 && (form1.get('salePrice').dirty || form1.get('salePrice').touched)">
+                                                        {{validation.message}}</mat-error>
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div fxFlex="50">
+                                            <mat-form-field class="example-full-width">
+                                                <mat-label>Tax </mat-label>
+                                                <input formControlName='saleTaxPrice' matInput>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div fxLayout="row">
+                                        <div fxFlex>
+                                            <mat-form-field class="example-full-width">
+                                                <mat-label>Item Cateogory</mat-label>
+                                                <mat-select formControlName="itemCategoryId">
+                                                    <mat-option *ngFor="let categoryItem of LoadCategoryItems"
+                                                        [value]="categoryItem.id">
+                                                        {{
+                                                        categoryItem.title
+                                                        }}
+                                                    </mat-option>
+                                                </mat-select>
+                                                <mat-error *ngFor="let validation of validation_messages.itemCategory">
+                                                    <mat-error class="error-message"
+                                                        *ngIf="form1.get('itemCategoryId').hasError(validation.type)
+                                                         && (form1.get('itemCategoryId').dirty || form1.get('itemCategoryId').touched)">
+                                                        {{validation.message}}</mat-error>
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                    </div>
+
+
+
+
+
+
+                                    <div fxLayout="row" fxLayoutGap="9px" fxLayoutAlign="end center">
+                                        <button mat-raised-button color="warn"
+                                            (click)='dialogRef.close()'>Cancel</button>
+                                        <button mat-raised-button [ngClass]="{ 'btnSave': form1.valid}"
+                                            [disabled]='form1.invalid' (click)="saveItem()">Save</button>
+
+
+                                    </div>
+
+
+
+                                </div>
+
+
+                                <div fxLayout="column" fxFlex="40" fxLayoutAlign="start center">
+                                    <div fxLayout="row">
+                                        <div fxFlex>
+                                            <button *ngIf="imageUrl!=emptyImagePath" class="btnCancelImage"
+                                                (click)="btnCancelImage()">x</button>
+
+                                            <div *ngIf="imageUrl" class="imageContainer">
+                                                <img [src]="imageUrl" class="image-area" />
+                                            </div>
+                                            <div class="d-none">
+                                                <input formControlName="image" type="file" id="imageUpload" #fileInput
+                                                    (change)="uploadPhoto($event.target.files)" />
+                                            </div>
+                                            <button type="file" id="btnUploadImage" class="btnUploadImage" 
+                                                [disabled]="fileToUpload!=null" (click)="fileInput.click()">
+                                                <mat-icon>cloud_upload</mat-icon>
+                                                Upload Image
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </mat-card>
+
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

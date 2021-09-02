@@ -1,0 +1,81 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~ngx-toastr/toastr.css";
+@import "src/assets/scss/variables.scss";
+
+#toast-container > div {
+  opacity: 1;
+}
+.custom1-dialog-container .mat-dialog-container {
+  background: transparent;
+  padding: 0px !important;
+  box-shadow: none;
+  /* add your styles */
+}
+
+.backdropBackground {
+  background: red;
+  opacity: 0.3px;
+}
+
+.cdk-overlay-dark-backdrop {
+  background: rgb(0 0 0 / 43%);
+}
+.cdk-overlay-container {
+  z-index: 9999;
+}
+.selected-row {
+  background-color: $selected-row-color !important;
+}
+
+.app-table {
+  .mat-header-cell,
+  .mat-header-row {
+    height: 37px;
+    background-color: $base-color;
+    color: white;
+    border-bottom-color: darkgray;
+    overflow: auto;
+  }
+
+  .mat-row:nth-child(even) {
+    background-color: white;
+    color: black;
+  }
+
+  .mat-row:nth-child(odd) {
+    background-color: #ef53501f;
+    color: black;
+  }
+  .no-records {
+    height: 37px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding-left: 10px;
+    background: white;
+    border: 1px solid #e53935;
+  }
+  .mat-raised-button {
+    background: #1547ff;
+  }
+
+  .add-btn {
+    padding: 0px;
+  }
+
+  .btn-edit {
+    padding: 0px;
+    min-width: 35px;
+    margin-right: 10px;
+  }
+
+  .btn-delete {
+    padding: 0px;
+    min-width: 35px;
+  }
+
+  .mat-row:hover {
+    background: rgb(230 135 135) !important;
+  }
+}

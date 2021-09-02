@@ -1,0 +1,92 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+                        <h4 class="card-title ">Order Details</h4>
+                        <p class="card-category"> Here You Can See Order Details</p>
+                    </div>
+                    <div class="card-body" fxLayout='column'>
+
+                        <div class="table-responsive">
+                            <table mat-table [dataSource]="dataSource" class="app-table">
+                                <!-- Position Column -->
+
+                                <ng-container matColumnDef="ItemName">
+                                    <th mat-header-cell *matHeaderCellDef> Item Name</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Quantity">
+                                    <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.itemQuatity}} </td>
+                                </ng-container>
+
+
+                                <ng-container matColumnDef="Action">
+                                    <th mat-header-cell *matHeaderCellDef>
+                                        <!-- <button mat-raised-button type="button"   class="btn btn-default" id="insertbtn"> Insert
+                    </button> -->
+                                    </th>
+                                    <td mat-cell *matCellDef="let obj">
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns"
+                                    [ngClass]="{ 'selected-row': row.id === selectedRowId }"></tr>
+
+                            </table>
+
+                            <div *ngIf="dataSource.data.length==0" class="no-records">
+                                <span *ngIf='isGridDataLoading'> Loading...</span>
+                                <span *ngIf='!isGridDataLoading'> No records found </span>
+                            </div>
+
+
+                            <!--<mat-paginator  [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>-->
+                        </div>
+                        <br />
+                        <div fxLayout="row">
+                            <div fxFlex="40">
+
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Status</mat-label>
+                                    <mat-select [(ngModel)]="selectedOrderStatus">
+                                        <mat-option *ngFor="let obj of orderStatusList" (click)="OrderStatus(obj.id)" [value]="obj.id">
+                                            {{
+                                                obj.name
+                                            }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+
+                               
+                            </div>
+
+
+                            <div fxFlex="30">
+
+                                <button mat-raised-button class="btnUpdate" (click)="btnUpdateStatus()">
+                                    Update
+                                </button>
+                            </div>
+
+                        </div>
+                        <br />
+                        <!--<button mat-raised-button class='btnOrdrReady'>
+    </button>-->
+
+                        <div fxLayout="row" fxLayoutGap="9px" fxLayoutAlign="end center" style="padding-top:15px;">
+                            <button mat-raised-button color="warn" (click)='dialogRef.close()'>Close</button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

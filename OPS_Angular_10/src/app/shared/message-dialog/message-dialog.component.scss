@@ -1,0 +1,56 @@
+﻿@import "~@angular/material/theming";
+
+.title {
+  color: white;
+  font-size: 1.2em;
+  height: 30px;
+  padding: 7px;
+  align-items: center;
+  display: flex;
+}
+
+.warning {
+  background-color: map_get($mat-deep-orange, 500);
+}
+
+.error {
+  background-color: map_get($mat-red, 500);
+}
+
+.success {
+  background-color: map_get($mat-blue, 500);
+}
+
+.information {
+  background-color: map_get($mat-light-blue, 500);
+}
+
+.material-icons {
+  color: white;
+  margin-right: 8px;
+}
+
+.message {
+  margin: 14px;
+  color: map_get($mat-blue-grey, 500);
+}
+
+.timer {
+  margin: 28px 0 0 14px;
+  font-size: 0.9em;
+  color: map_get($mat-red, 400);
+
+  .seconds {
+    margin-left: 7px;
+    font-size: 1em;
+    color: map_get($mat-red, 500);
+  }
+  
+  
+}
+.mat-raised-button {
+  
+  
+  width:85px;
+}
+

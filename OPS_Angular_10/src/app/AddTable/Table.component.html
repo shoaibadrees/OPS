@@ -1,0 +1,96 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header ">
+                        <h4 class="card-title ">Table List</h4>
+                        <p class="card-category"> Here You Can See Tables List</p>
+
+                    </div>
+                    <div class="card-body" fxLayout='column'>
+
+                        <mat-form-field fxFlex='100'>
+                            <mat-label>Filter</mat-label>
+                            <input matInput placeholder="Filter" #input>
+                        </mat-form-field>
+                        <div class="table-responsive">
+                            <table mat-table [dataSource]="dataSource" class="app-table">
+                                <!-- Position Column -->
+                                <ng-container matColumnDef="Title">
+                                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Description">
+                                    <th mat-header-cell *matHeaderCellDef> Description </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="isActive">
+                                    <th mat-header-cell *matHeaderCellDef> IsActive. </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <mat-checkbox color="primary" onclick="return false"
+                                            [(ngModel)]="element.isActive"></mat-checkbox>
+                                    </td>
+                                </ng-container>
+
+
+
+                                <ng-container matColumnDef="Action">
+                                    <th mat-header-cell *matHeaderCellDef>
+                                        <!-- <button mat-raised-button type="button"   class="btn btn-default" id="insertbtn"> Insert
+                                    </button> -->
+                                        <button mat-button (click)='AddTable()' class='add-btn' color="basic">
+                                            <mat-icon>note_add</mat-icon> Add Table
+                                        </button>
+                                    </th>
+                                    <td mat-cell *matCellDef="let obj">
+                                        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end center">
+                                            <button mat-button (click)='editTable(obj,true)' class='btn-edit'
+                                                matTooltip="Edit Table" matTooltipPosition="left" color="primary">
+
+                                                <mat-icon>edit</mat-icon>
+                                            </button>
+
+
+
+                                            <button mat-button (click)='deleteTable(obj.id)' class='btn-delete'
+                                                matTooltip="Delete Table" matTooltipPosition="below" color="warn">
+                                                <mat-icon>delete_forever</mat-icon>
+                                            </button>
+                                        </div>
+
+
+
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns"
+                                    [ngClass]="{ 'selected-row': row.id === selectedRowId }"></tr>
+
+
+
+
+                            </table>
+
+                            <div *ngIf="this.dataSource.data==0" class="no-records">
+                                <span *ngIf='isGridDataLoading'> Loading...</span>
+                                <span *ngIf='!isGridDataLoading'> No records found </span>
+                            </div>
+
+
+                            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                        </div>
+
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

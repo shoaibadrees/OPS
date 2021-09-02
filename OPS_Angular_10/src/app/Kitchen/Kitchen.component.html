@@ -1,0 +1,86 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header ">
+                        <h4 class="card-title ">Order Detail</h4>
+                        <p class="card-category"> Here You Can See Active Order Detail</p>
+                    </div>
+                    <div class="card-body" fxLayout='column'>
+                        <mat-form-field fxFlex='100'>
+                            <mat-label>Filter</mat-label>
+                            <input matInput (keyup)="applyFilter($event)" placeholder="Filter" #input>
+                        </mat-form-field>
+                        <div class="table-responsive">
+                            <table mat-table [dataSource]="dataSource" class="app-table">
+                                <!-- Position Column -->
+                                <ng-container matColumnDef="TableName">
+                                    <th mat-header-cell *matHeaderCellDef> Table No. </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.tableName}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="CustomerName">
+                                    <th mat-header-cell *matHeaderCellDef> Customer Name. </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.customerName}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="orderStatus">
+                                    <th mat-header-cell *matHeaderCellDef> Order Status </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <mat-select [(ngModel)]="element.orderStatus" disabled>
+                                            <mat-option *ngFor="let obj of orderStatusList" [value]="obj.id">
+                                                {{
+                                                obj.name
+                                                }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </td>
+                                </ng-container>
+
+                               
+
+                                <ng-container matColumnDef="isActive">
+                                    <th mat-header-cell *matHeaderCellDef> IsActive. </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <mat-checkbox color="primary" onclick="return false"
+                                                      [(ngModel)]="element.isActive"></mat-checkbox>
+                                    </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="Action">
+                                    <th mat-header-cell *matHeaderCellDef>
+                                    </th>
+                                    <td mat-cell *matCellDef="let obj">
+                                        <!--<button mat-raised-button class='btn-edit'
+                    matTooltip="Review Order Detail" matTooltipPosition="left" color="primary">
+                Detail
+            </button>-->
+                                        <button mat-button class='btn-edit'
+                                                matTooltip="View Order Details" matTooltipPosition="left" color="primary">
+
+                                            <mat-icon>visibility_off</mat-icon>
+                                        </button>
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let obj; columns: displayedColumns"
+                                    (click)='ReviewOrderDetail(obj)'
+                                    [ngClass]="{ 'selected-row': obj.id === selectedRowId }"></tr>
+                            </table>
+
+                            <div *ngIf="this.dataSource.data==0" class="no-records">
+                                <span *ngIf='isGridDataLoading'> Loading...</span>
+                                <span *ngIf='!isGridDataLoading'> No records found </span>
+                            </div>
+
+
+                            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

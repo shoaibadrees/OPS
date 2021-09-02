@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "material-dashboard-angular2-master(1)", ".", "{D06F1266-3816-47EA-85AF-D546D55EB61C}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_8033"
+		Debug.AspNetCompiler.PhysicalPath = "..\material-dashboard-angular2-master\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_8033\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_8033"
+		Release.AspNetCompiler.PhysicalPath = "..\material-dashboard-angular2-master\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_8033\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "8033"
+		SlnRelativePath = "..\material-dashboard-angular2-master\"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D06F1266-3816-47EA-85AF-D546D55EB61C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D06F1266-3816-47EA-85AF-D546D55EB61C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {227C2ACE-DC34-421C-BCDF-4A9B255241E8}
+	EndGlobalSection
+EndGlobal

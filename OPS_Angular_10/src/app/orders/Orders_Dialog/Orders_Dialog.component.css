@@ -1,0 +1,127 @@
+body {
+    margin: 0;
+    padding: 0;
+    color: black;
+}
+
+.btnfCategory {
+    margin: 0 15px 15px 0;
+    width: 100px;
+    font-size: 16px;
+    background-color: rgba(253, 187, 45, 1);
+}
+
+.example-card {
+    max-width: 200px;
+    min-width: 130px;
+}
+
+/* When the input field gets focus, change its width to 100% */
+
+.card {
+    width: 350px;
+    margin: 25px 10px 22px 10px;
+}
+
+    .card:hover {
+        box-shadow: rgb(0 0 0 / 4%) 0px 0px 20px 0px;
+    }
+
+/*order*/
+.order {
+    width: 270px;
+    height: 330px;
+    border: 1px solid blue;
+    /* display: flex; */
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.imagediv {
+    width: 100%;
+    height: 120px;
+    margin-top: -30px;
+}
+
+.imagesStyle {
+    /* border-style: double;*/
+    /* background-size: inherit; */
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.chic p {
+    color: black;
+    padding: 4px 0 0 5px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.price {
+    margin: 4px 3px 0 0;
+    float: right;
+}
+
+.txtQuantity {
+    width: 70px;
+    border: 1px solid black;
+}
+
+.quant {
+    width: 70px;
+    /* padding: 10px; */
+    font-size: 20px;
+    /* padding-left: 10px; */
+    /* align-items: center; */
+    text-align: center;
+    /* padding-top: 8px;*/
+}
+
+input[type="number"]:focus {
+    border: 3px solid rgba(253, 187, 45, 1);
+    border-radius: 4px;
+}
+
+.btnOuterRemove {
+    background-color: white;
+    border: none;
+}
+
+.btnRemove {
+    width: 29px;
+    height: 27px;
+    margin-top: 6px;
+    border: none;
+    background: rgba(253, 187, 45, 1);
+    border-radius: 50px;
+    padding-top: 1px;
+}
+
+.btnOuterAdd {
+    background-color: white;
+    border: none;
+}
+
+.btnInnerAdd {
+    width: 29px;
+    height: 27px;
+    border: none;
+    background: rgba(253, 187, 45, 1);
+    border-radius: 50px;
+    margin-top: 6px;
+    padding-top: 1px;
+}
+
+.btnAddToCart {
+    border: none;
+    border-radius: 24px;
+    width: 210px;
+    background-color: rgba(253, 187, 45, 1);
+    box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+}
+
+.btnCancel {
+    margin-top: 30px;
+    width: 90px;
+    background-color: red;
+}

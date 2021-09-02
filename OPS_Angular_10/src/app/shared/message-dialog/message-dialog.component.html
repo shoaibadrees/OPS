@@ -1,0 +1,51 @@
+
+
+
+
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card">
+                  <div class="card-header card-header-danger">
+                      <h4 class="card-title "> {{data.title}}</h4>
+                      
+                  </div>
+                  <div class="card-body">
+                    <div mat-dialog-content>
+                      <div *ngIf="data.messageType == 'W'" class="title warning"><i class="material-icons">warning</i>Warning:
+                        {{data.title}}
+                      </div>
+                      <div *ngIf="data.messageType == 'E'" class="title error"><i class="material-icons">highlight_off</i>Error:
+                        {{data.title}}</div>
+                      <div *ngIf="data.messageType == 'S'" class="title success"><i class="material-icons">check_circle_outline</i>Success:
+                        {{data.title}}</div>
+                      <div *ngIf="data.messageType == 'I'" class="title information"><i class="material-icons">info_outline</i>Information:
+                        {{data.title}}</div>
+                      <div class="message" fxLayout="row">
+                        <p [innerHTML]="data.message"></p>
+                      </div>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="9px" fxLayoutAlign="end center" >
+                      <button mat-raised-button [color]="data?.CancelTitle && data?.CancelTitle === 'Stay signed-in' ? 'primary' : 'warn'"
+                        id="btnCancel" *ngIf="data?.IsCancelBtnVisible"
+                        (click)="dialogRef.close(false)">{{data?.CancelTitle ? data.CancelTitle : 'Cancel' }}</button>
+                      <button mat-raised-button [color]="data?.OkTitle && data?.OkTitle === 'Sign-out' ? 'warn' : 'primary'" id="btnOK"
+                        (click)="dialogRef.close(true)" cdkFocusInitial>{{data?.OkTitle ? data.OkTitle :'OK' }}</button>
+                    </div>
+                    <div *ngIf="showTimer" flexLayout="row" fxLayoutAlign="end center">
+                      <div fxFlex="100" class="timer">Sign-out after:<span class="seconds">{{timer}} seconds.</span></div>
+                    </div>
+                    
+                      
+                  </div>
+              </div>
+          </div>
+          
+      </div>
+  </div>
+</div>
+
+
+
+

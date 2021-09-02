@@ -1,0 +1,178 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header ">
+                        <h4 class="card-title ">Order List</h4>
+                        <p class="card-category"> Here You Can See Orders List</p>
+                    </div>
+
+                    <form [formGroup]='form1'>
+                        <div class="card-body" fxLayout='column'>
+
+                            <div>
+                                <div fxlayout="row">
+                                    <mat-form-field fxFlex="30">
+                                        <mat-label>Select Table.</mat-label>
+                                        <mat-select formControlName="tableId">
+                                            <mat-option *ngFor="let tables of LoadTables" [value]="tables.id">
+                                                {{
+                                                tables.title
+                                                }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngFor="let validation of validation_messages.tableId">
+                                            <mat-error class="error-message" *ngIf="
+                                                                                      form1.get('tableId').hasError(validation.type) &&
+                                                                                      (form1.get('tableId').dirty ||
+                                                                                        form1.get('tableId').touched)
+                                                                                    ">
+                                                {{ validation.message }}
+                                            </mat-error>
+                                        </mat-error>
+
+                                    </mat-form-field>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <mat-form-field class="example-full-width">
+                                            <input formControlName='customerName' matInput
+                                                placeholder="Customer Name (Optional)" />
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <mat-form-field class="example-full-width">
+                                            <input formControlName='customerAddress' matInput
+                                                placeholder="Customer Address (Optional)" />
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <mat-form-field class="example-full-width" type="number">
+                                            <input formControlName='customerPhnNo' matInput
+                                                placeholder="Customer Pho No. (0300-1231231) (Optional)" />
+                                        </mat-form-field>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <mat-form-field fxFlex='100'>
+                                <mat-label>Filter</mat-label>
+                                <input matInput placeholder="Filter" #input>
+                            </mat-form-field>
+
+                            <div class="table-responsive">
+                                <table mat-table [dataSource]="dataSource" class="app-table">
+
+                                    <!-- Position Column -->
+                                    <ng-container matColumnDef="Name">
+                                        <th mat-header-cell *matHeaderCellDef> Title </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="Description">
+                                        <th mat-header-cell *matHeaderCellDef> Description </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="ItemQuantity">
+                                        <th mat-header-cell *matHeaderCellDef> Item Quantity </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.itemQuatity}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="SalePrice">
+                                        <th mat-header-cell *matHeaderCellDef> Unit Price. </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.salePrice}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="TotalPrice">
+                                        <th mat-header-cell *matHeaderCellDef> Total Price </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            {{(element.salePrice)*(element.itemQuatity)}}
+                                        </td>
+
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="Action">
+                                        <th mat-header-cell *matHeaderCellDef>
+                                            <!-- <button mat-raised-button type="button"   class="btn btn-default" id="insertbtn"> Insert
+                            </button> -->
+                                            <button mat-button (click)='AddItems()' class='add-btn' color="basic">
+                                                <mat-icon>note_add</mat-icon> Add Dish
+                                            </button>
+
+                                        </th>
+                                        <td mat-cell *matCellDef="let obj">
+                                            <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end center">
+
+                                                <button mat-button (click)='editOrderItem(obj,true)' class='btn-edit'
+                                                    matTooltip="Edit Order Dish" matTooltipPosition="left" color="primary">
+
+                                                    <mat-icon>edit</mat-icon>
+                                                </button>
+
+
+
+                                                <button mat-button (click)='deleteItem(obj)' class='btn-delete'
+                                                    matTooltip="Remove Dish" matTooltipPosition="below" color="warn">
+                                                    <mat-icon>delete_forever</mat-icon>
+                                                </button>
+                                            </div>
+
+
+
+                                        </td>
+                                    </ng-container>
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns"
+                                        [ngClass]="{ 'selected-row': row.id === selectedRowId }"></tr>
+
+                                </table>
+
+                                <div *ngIf="_orderService.OrderItems.length===0 " class="no-records"
+                                    (ngModelChange)="function()">
+                                    <span *ngIf='isGridDataLoading'> Loading...</span>
+                                    <span *ngIf='!isGridDataLoading'> No Order Found </span>
+                                </div>
+
+
+                                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                            </div>
+
+                            <div class="billCal" *ngIf="this.dataSource.data!=0">
+                                <h5>Total:&nbsp;{{this.subTotal}}</h5>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-form-field class="example-full-width">
+                                            <input formControlName="discount" matInput placeholder="Discount"
+                                                type="number" (keyup)="discount($event)" />
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                                <!--<div class="row">
+                                    <div class="col-md-12">
+                                        <mat-form-field class="example-full-width">
+                                            <input formControlName="tax" matInput placeholder="Tax"
+                                                (keyup)="tax($event)" />
+                                        </mat-form-field>
+                                    </div>
+                                </div>-->
+                                <h5>Net Price:{{this.netPrice}}</h5>
+
+                            </div>
+
+
+                            <div fxLayoutAlign="end start" style="width:100%;">
+                                <button mat-raised-button class="btnOrderFood" (click)="btnPlaceOrder()"
+                                        [disabled]="this.dataSource.data.length==0 && this.form1.invalid">
+                                    Place
+                                    Order
+                                </button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

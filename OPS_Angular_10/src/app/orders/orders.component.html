@@ -1,0 +1,102 @@
+
+<div class="main-content">
+    <div fxLayout="row wrap">
+
+        <div>
+            <button mat-raised-button [class.selected-category]="selectedCategoryId == -1" class="btnfCategory" color="primary"
+                    (click)="getItemsOnCategoryId(-1)">
+                Show All Items
+            </button>
+        </div>
+        <div *ngFor="let fCategory of categoryList">
+            <button mat-raised-button class="btnfCategory" [class.selected-category]="selectedCategoryId == fCategory.id" color="primary"
+                    (click)="getItemsOnCategoryId(fCategory.id) ">
+                {{fCategory.title}}
+            </button>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <mat-card class="maincard">
+            <div fxLayoutAlign="end start" style="width:100%;">
+
+                <button mat-raised-button class="btnReviewCard" [disabled]="_orderService.OrderItems.length===0"
+                        (click)="btnReviewCard()">
+                    {{_orderService.OrderItems.length}}&nbsp; Review Cart &nbsp;
+                </button>
+            </div>
+
+
+            <!--<div class="row">
+                 <div class="col-md-12">
+                      <div class="form-group ">
+                           <div class="form-outline">
+                                <input type="search" #search mat-button placeholder="Search Food Item."
+                                     (keyup)="applyFilter($event)" />
+                           </div>
+                      </div>
+                 </div>
+            </div>-->
+
+            <div fxLayout="row">
+                <div *ngIf="this.Items==0" class="noRecordFound">No Item Found</div>
+            </div>
+            <div fxLayout="row wrap"  >
+
+                <div  *ngFor="let oList of Items">
+                    <div class="card card-chart ">
+                        <div class="card-header ">
+                            <div class="imagediv">
+                                <img class="imagesStyle" [src]="oList.imageUrl">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span class="chic">
+                                        <h4 class="card-title">{{oList.title}}</h4>
+                                    </span>
+                                </div>
+                                <div class="col-md-6">
+                                    <span class="price">
+                                        <h4>
+                                            {{oList.salePrice }} Pkr.
+                                        </h4>
+                                    </span>
+                                </div>
+                            </div>
+                            <br />
+                            <div fxLayout="row">
+                                <p class="description">{{oList.description}}</p>
+                            </div>
+                            <!--<p class="card-category">
+                                <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span>
+                                increase in today sales.
+                            </p>-->
+                            <div fxLayout="row">
+                                <div fxFlex="50%">
+                                    <p class="specialOffer"></p>
+                                </div>
+                                <div fxFlex="50%">
+                                    <button mat-flat-button class="btnOrder"
+                                            (click)="btnOrderFood(oList,true)">
+                                        Order
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                               
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+        </mat-card>
+    </div>
+</div>

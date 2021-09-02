@@ -1,0 +1,62 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header " cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+                        <h4 class="card-title">{{this.isEditMode ? 'Edit Item Category' : 'Add Item Category'}}</h4>
+                        <p class="card-category">{{this.isEditMode ? 'Here You Can Update Item Category' : 'Here You Can Add Item Category'}}</p>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]='form1' novalidate>
+                            <mat-card style='margin-top:10px;'>
+                                <div>
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>ID</mat-label>
+                                        <input formControlName='Id' matInput placeholder="ID">
+                                    </mat-form-field>
+                                    <mat-form-field class="example-full-width">
+
+                                        <input matInput formControlName='Title' matInput placeholder="Name">
+                                        <mat-error *ngFor="let validation of validation_messages.Title">
+                                            <mat-error class="error-message" *ngIf="form1.get('Title').hasError(validation.type)
+                                                   && (form1.get('Title').dirty || form1.get('Title').touched)">
+                                                {{validation.message}}</mat-error>
+                                        </mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="example-full-width">
+                                        <input formControlName='Description' matInput
+                                            placeholder="Description (Optional)">
+                                    </mat-form-field>
+                                    <mat-checkbox class="example-margin" formControlName="isActive" color="primary"
+                                        ng-checked="isActive">Active</mat-checkbox>
+                                    <div fxLayout="row" fxLayoutGap="9px" fxLayoutAlign="end center">
+                                        <button mat-raised-button color="warn"
+                                            (click)='dialogRef.close()'>Cancel</button>
+                                        <button mat-raised-button [ngClass]="{ 'btnSave': form1.valid}"
+                                            [disabled]='form1.invalid' (click)="saveCategoryItem()">Save</button>
+
+
+                                    </div>
+
+
+
+
+                                </div>
+                            </mat-card>
+                        </form>
+
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
